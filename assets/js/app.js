@@ -15,7 +15,7 @@ import "../css/app.scss"
 import "phoenix_html"
 import {Socket} from "phoenix"
 import NProgress from "nprogress"
-import {LiveSocket} from "phoenix_live_view"
+import {LiveSocket, Browser} from "phoenix_live_view"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
@@ -33,3 +33,12 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+window.addEventListener("phx:page-loading-stop", (info) => {
+  console.log("window.location", window.location);
+  if (window.location.search === "?js-fix") {
+    let hashEl = Browser.getHashTargetEl(window.location.hash);
+    if (hashEl) {
+      hashEl.scrollIntoView();
+    }
+  }
+});
