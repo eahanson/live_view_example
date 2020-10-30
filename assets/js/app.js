@@ -34,7 +34,6 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 window.addEventListener("phx:page-loading-stop", (info) => {
-  console.log("window.location", window.location);
   if (window.location.search === "?js-fix") {
     let hashEl = Browser.getHashTargetEl(window.location.hash);
     if (hashEl) {

@@ -15,7 +15,6 @@ which is a LiveView with the following JS added, fixes the issue:
 
 ```javascript
 window.addEventListener("phx:page-loading-stop", (info) => {
-  console.log("window.location", window.location);
   if (window.location.search === "?js-fix") {
     let hashEl = Browser.getHashTargetEl(window.location.hash);
     if (hashEl) {
