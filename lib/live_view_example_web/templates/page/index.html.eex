@@ -1,0 +1,5 @@
+<section>
+  <%= for n <- 100..500 do %>
+    <div id="<%= n %>"><%= String.duplicate("#{n} ", 20) %></div>
+  <% end %>
+</section>
